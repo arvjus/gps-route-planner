@@ -1,0 +1,141 @@
+/* $Id$ */
+html, body {
+    background-color: #FFFFFF;
+    width:  100%;
+    height: 100%;
+}
+html {
+    overflow: hidden;
+}
+body {
+    font-size:10pt;
+    line-height:1.3em;
+    overflow:hidden;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+p {
+    font-size:10pt;
+    line-height:1em;
+}
+a {
+    color:#3366CC;
+}
+button{
+    width:60px;
+    font-size:10pt;
+}
+img{
+    border:none;
+}
+input {
+    font-size:10pt;
+}
+
+#map{
+    position:absolute;
+    top:4px;
+    left:3px;
+    bottom: 3px;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+#coords{
+    position:absolute;
+    right:3px;
+    top:4px;
+    bottom:0px;
+    height:0px;
+    font-size:8pt;
+    color: black;
+    background:#eee;
+    padding-right:10px;
+    padding-left:10px;
+    padding-top:5px;
+    width:236px;
+    overflow:auto;
+}
+#map_zoom{
+    position:absolute;
+    right:3px;
+    bottom:3px;
+    height:190px;
+    width:256px;
+    z-index:4;
+}
+#map_zoom_overlay{
+    position:absolute;
+    right:3px;
+    bottom:3px;
+    height:157px;
+    width:192px;
+    z-index:10;
+}
+
+div.help{
+    position:absolute;
+    right:175px;
+    top:8px;
+    font-size: 12px;
+}
+#location_button_outer{
+    right: 77px; 
+}
+#route_button_outer{
+    right: 5px; 
+}
+div.button_outer{
+    border: 1px solid black; 
+    position: absolute; 
+    background-color: white; 
+    text-align: center; 
+    top: 7px; 
+    width: 70px; 
+    cursor: pointer;
+}
+div.button{
+    border-style: solid; 
+    border-width: 1px; 
+    font-size: 12px;
+}
+div.button_active{
+    border-color: rgb(52, 86, 132) rgb(108, 157, 223) rgb(108, 157, 223) rgb(52, 86, 132); 
+    font-weight: bold;
+}
+div.button_inactive{
+    border-color: white rgb(176, 176, 176) rgb(176, 176, 176) white; 
+    font-weight: normal;
+}
+span.form_heading{
+    font-size: 12px;
+    font-weight: bold;
+}
+div.form_label{
+    font-size: 12px;
+    width: 46px; 
+}
+input.form_entry, div.form_entry{
+    font-size: 12px;
+    width: 170px; 
+}
+div.waypoints_label, a.waypoints_label{
+    font-size: 12px;
+    width: 22px; 
+}
+input.waypoints_entry{
+    font-size: 12px;
+    width: 180px; 
+}
+input.waypoints_descr{
+    font-size: 12px;
+    width: 120px; 
+}
+span.waypoints_dist{
+    font-size: 12px;
+    padding-left: 8px;
+}
+input.waypoints_button{
+    width: 70px; 
+}
+

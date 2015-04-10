@@ -1,0 +1,130 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- (C) 2010 Arvid Juskaitis -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <link href="map.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6IpKEt4mA7W8zvuVAjQYEi5qK04jOZvw&v=3&sensor=true"></script>
+    <script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/cookie.js"></script>
+    <title>GPS Route Planner</title>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="coords">
+    <div class="help" title="Information about this application">Need&nbsp;<a href="#">help</a>?</div>
+    <div id="location_button_outer" class="button_outer"
+         title="Show address by selected location, search address or go by coordinates">
+        <div id="location_button" class="button button_active">Location</div>
+    </div>
+    <div id="route_button_outer" class="button_outer" title="Create a route by selecting waypoints">
+        <div id="route_button" class="button button_inactive">Route</div>
+    </div>
+
+    <div id="location_tab">
+        <br/><br/>
+        <span class="form_heading">Current coordinates:</span>
+        <table>
+            <tr>
+                <td>
+                    <div class="form_label">Lat:</div>
+                </td>
+                <td>
+                    <div class="form_entry" id="lat">0</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form_label">Lng:</div>
+                </td>
+                <td>
+                    <div class="form_entry" id="lng">0</div>
+                </td>
+            </tr>
+        </table>
+        <hr/>
+        <form action="#">
+            <span class="form_heading">Search / geocoding:</span>
+            <table>
+                <tr>
+                    <td>
+                        <div class="form_label">Addr:</div>
+                    </td>
+                    <td class="form_entry"><input id="geocode_address" class="form_entry" type="text" name="address"
+                                                  maxlength="255"></td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td><input type="submit" value="Search" class="locateGeocode"></td>
+                </tr>
+            </table>
+        </form>
+        <hr/>
+        <form action="#">
+            <span class="form_heading">Location by coordinates:</span>
+            <table>
+                <tr>
+                    <td>
+                        <div class="form_label">Lat:</div>
+                    </td>
+                    <td><input id="corrdinates_lat" class="form_entry" type="text" name="lat"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form_label">Lng:</div>
+                    </td>
+                    <td><input id="corrdinates_lng" class="form_entry" type="text" name="lng"></td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td><input type="submit" value="Go to location" class="locateCoordinates"></td>
+                </tr>
+            </table>
+        </form>
+        <hr/>
+        <form action="#">
+            <span class="form_heading">Location by GoogleMaps link:</span>
+            <table>
+                <tr>
+                    <td>
+                        <div class="form_label">Url:</div>
+                    </td>
+                    <td class="form_entry"><input id="googlemaps_url" class="form_entry" type="text" name="url"></td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td><input type="submit" value="Go to location" class="locateGooglemapsLink"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="route_tab">
+        <br/><br/>
+
+        <form action="/cgi-bin/make-gpx.py" method="POST" id="form_gpx">
+            <div id="waypoints">
+            </div>
+            <table>
+                <tr>
+                    <td><input class="form_button" type="submit" value="New" onclick="clearRoute(); return false"></td>
+                    <td><input class="form_button" type="submit" value="Reverse" onclick="reverseRoute(); return false">
+                    </td>
+                    <td><input class="form_button" type="submit" value="Save"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div id="map_zoom"></div>
+<div id="map_zoom_overlay">
+    <img src="images/crosshairs.gif" border="none">
+</div>
+<div id='divHidden' style="display: inline; visibility: hidden">
+</div>
+</body>
+</html>
