@@ -20,10 +20,11 @@ Concepts and usage
 
 Click to view.
 
-[![bcfront](https://raw.githubusercontent.com/arvjus/bcfront/master/screenshots/bcfront-thumb.png)](https://raw.githubusercontent.com/arvjus/bcfront/master/screenshots/bcfront.png)
+[![Location](https://raw.githubusercontent.com/arvjus/gps-route-planner/master/screenshots/location-thumb.png)](https://raw.githubusercontent.com/arvjus/gps-route-planner/master/screenshots/location.png)  [![Route](https://raw.githubusercontent.com/arvjus/gps-route-planner/master/screenshots/route-thumb.png)](https://raw.githubusercontent.com/arvjus/gps-route-planner/master/screenshots/route.png)
 
 
 ### Suggested Workflow
+
 Find location(s) in Location tab.
 Switch to Route tab and define route by creating waypoints on map.
 Export the route to a file by pressing Save button.
@@ -39,7 +40,4 @@ Route consists of waypoints, listed by creation order. You can reverse the order
 ##### Home Location
 You can define any way point as a home location. This location is saved as a cookie and will be used as default location every time you go to this site or search with empty location.
 
-### Web browser support
-
-Currently, only Firefox and Safari are in the list of supported browsers, but in the near future I may add Chrome to the list.
 
