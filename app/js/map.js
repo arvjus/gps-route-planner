@@ -174,6 +174,7 @@ function switchToRouteMode(event) {
     if (!isLocationMode) {
         return
     }
+    removeMarker(-1);
     closeInfoWindow();
     $('#route_button').addClass('button_active').removeClass('button_inactive');
     $('#location_button').addClass('button_inactive').removeClass('button_active');
@@ -221,10 +222,6 @@ function showMarkerInfo(marker_id) {
         sHTML += '<br/><a href="#" onClick="closeInfoWindow();removeAllAfterMarker(' + marker_id + ');return false">Delete all waypoints after this one</a>';
     }
     sHTML += '<br/><a href="#" onclick="closeInfoWindow();removeMarker(' + marker_id + ');return false">Delete this waypoint</a>';
-
-    if (marker_id != -1) {
-        focusWaypointDescr(marker_id);
-    }
 
     closeInfoWindow();
     infoWindow = new google.maps.InfoWindow({
@@ -343,7 +340,7 @@ function createMarker(latLng, marker_id) {
 
     google.maps.event.addListener(marker, 'click', function () {
         closeInfoWindow();
-        showMarkerInfo(marker_id);
+        showMarkerInfo(marker.marker_id);
     });
     google.maps.event.addListener(marker, 'dblclick', switchToLocationMode);
     google.maps.event.addListener(marker, 'mouseover', function () {
@@ -369,12 +366,10 @@ function createMarker(latLng, marker_id) {
     return marker;
 }
 
-function insertAfterMarker(marker_id, latLng) {
-    if (!latLng) {
-        var newX = positions[marker_id].x + (positions[marker_id + 1].x - positions[marker_id].x) / 2;
-        var newY = positions[marker_id].y + (positions[marker_id + 1].y - positions[marker_id].y) / 2;
-        latLng = new google.maps.LatLng(newX, newY)
-    }
+function insertAfterMarker(marker_id) {
+    var lat = positions[marker_id].lat() + (positions[marker_id + 1].lat() - positions[marker_id].lat()) / 2;
+    var lng = positions[marker_id].lng() + (positions[marker_id + 1].lng() - positions[marker_id].lng()) / 2;
+    var latLng = new google.maps.LatLng(lat, lng);
     positions.splice(marker_id + 1, 0, latLng);
     var marker = createMarker(latLng, marker_id + 1);
     markers.splice(marker_id + 1, 0, marker);
@@ -383,14 +378,14 @@ function insertAfterMarker(marker_id, latLng) {
     }
     updateWaypointTable();
     drawRoute();
-    if (!latLng) {
-        showMarkerInfo(marker.marker_id);
-    }
+    showMarkerInfo(marker.marker_id);
 }
 
 function removeMarker(marker_id) {
     if (marker_id == -1) {
-        locationMarker.setMap(null);
+        if (locationMarker != null) {
+            locationMarker.setMap(null);
+        }
         locationMarker = null;
         locationAddress = null;
     } else {
@@ -404,6 +399,19 @@ function removeMarker(marker_id) {
         drawRoute();
         updateWaypointTable();
     }
+}
+
+function removeAllAfterMarker(marker_id) {
+    for (i = marker_id + 1; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    positions.splice(marker_id + 1);
+    positions.length = marker_id + 1;
+    markers.splice(marker_id + 1);
+    markers.length = marker_id + 1;
+    isDragging = false;
+    drawRoute();
+    updateWaypointTable();
 }
 
 function drawRoute() {
