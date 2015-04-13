@@ -16,10 +16,6 @@ var geocoder;
 var home = new google.maps.LatLng(59.3327881, 18.0644881);
 var infoWindow;
 
-/*
- * http://www.mywebexperiences.com/2013/03/05/migrate-google-maps-from-v2-to-v3/
- * */
-
 $(document).ready(function () {
 //    if (navigator.userAgent.toLowerCase().indexOf("firefox") === -1) {
 //        alert('This site was tested only with Mozilla Firefox,\nother web browsers may not work properly');
@@ -433,6 +429,7 @@ function clearRoute() {
     polyLine.setMap(null);
     markers.length = 0;
     positions.length = 0;
+    routeName = '';
     updateWaypointTable();
 }
 

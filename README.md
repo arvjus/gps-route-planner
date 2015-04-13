@@ -41,3 +41,26 @@ Route consists of waypoints, listed by creation order. You can reverse the order
 You can define any way point as a home location. This location is saved as a cookie and will be used as default location every time you go to this site or search with empty location.
 
 
+### Prerequisites
+
+* PHP >= 5.x
+* Apache 2 Web Server (optional)
+
+
+### Installation
+
+Clone repository, install dependencies
+```bash
+$ git clone https://github.com/arvjus/gps-route-planner.git
+$ cd gps-route-planner
+```
+
+Go to [Google Maps API](https://developers.google.com/maps) and optain your own key for JavaScript API v3. Update app/index.html with the key.
+
+Go to 'app' directory, start built-in web server
+```bash
+$ (cd app; php -S localhost:8000)
+```
+
+Go to [http://localhost:8000](http://localhost:8000)
+
