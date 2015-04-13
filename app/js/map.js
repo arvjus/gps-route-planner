@@ -121,7 +121,7 @@ $(document).ready(function () {
     // make external call to handle action
     if (window.location.href.match('^file:')) {
         var form = $('#form_gpx');
-        form.attr('action', 'http://gps-route-planner.heliohost.org' + form.attr('action'));
+//        form.attr('action', 'http://gps-route-planner.heliohost.org' + form.attr('action'));
     }
 
     // attach help
