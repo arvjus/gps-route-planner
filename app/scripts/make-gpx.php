@@ -27,7 +27,7 @@ foreach ($_POST as $param_name => $param_val) {
 ksort($lats);
 
 header("Content-type: application/xml");
-header("Content-Disposition: attachment; filename=route.gpx");
+header("Content-Disposition: attachment; filename=" . $route_name . ".gpx");
 echo <<< EOH
 <?xml version='1.0' encoding='UTF-8'?>
 <gpx version='1.1' creator='GPS Route Planner' xmlns='http://www.topografix.com/GPX/1/1' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
